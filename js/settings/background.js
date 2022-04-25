@@ -1,5 +1,5 @@
 export default class BackgroundManager {
-  randomBackground;
+  #randomBackground;
   backgroundImgs = [
     "img01.jpg",
     "img02.jpg",
@@ -7,7 +7,7 @@ export default class BackgroundManager {
     "img04.jpg",
     "img05.jpg",
   ];
-  backgroundIntervalObj;
+  #backgroundIntervalObj;
   landingPage = document.querySelector(".landing-page");
   constructor() {
     this.setup();
@@ -16,30 +16,29 @@ export default class BackgroundManager {
     let randomBackgroundOptions = document.querySelectorAll(".options-list li");
 
     // load background setting option from local storage
-    this.randomBackground = window.localStorage.getItem("random-background");
-
-    // unmark previously marked active option
-    randomBackgroundOptions.forEach((option) => {
-      if (option.dataset.random_background === this.randomBackground)
-        option.classList.add("active");
-      else option.classList.remove("active");
-      option.addEventListener("click", (e) => this.updateBackgroundOption(e));
-    });
+    this.#randomBackground = window.localStorage.getItem("random-background");
 
     // if not previously stored, set a default value = true
-    if (this.randomBackground == null) {
-      this.randomBackground = "true";
+    if (this.#randomBackground === null) {
+      this.#randomBackground = "true";
 
       // load background setting option from local storage
-      window.localStorage.setItem("random-background", true);
+      window.localStorage.setItem("random-background", "true");
     }
-    if (this.randomBackground === "true") {
+    if (this.#randomBackground === "true") {
       this.pickRandomImage();
     } else {
       document
         .querySelector('.options-list li[data-random_background="false"]')
         .classList.add("active");
     }
+    // unmark previously marked active option
+    randomBackgroundOptions.forEach((option) => {
+      if (option.dataset.random_background === this.#randomBackground)
+        option.classList.add("active");
+      else option.classList.remove("active");
+      option.addEventListener("click", (e) => this.updateBackgroundOption(e));
+    });
   }
 
   updateBackground() {
@@ -54,17 +53,17 @@ export default class BackgroundManager {
       .forEach((elem) => elem.classList.remove("active"));
     // mark current element as active
     e.target.classList.add("active");
-    this.randomBackground = e.target.dataset.random_background;
-    window.localStorage.setItem("random-background", this.randomBackground);
+    this.#randomBackground = e.target.dataset.random_background;
+    window.localStorage.setItem("random-background", this.#randomBackground);
     // set / clear randomizing background based on selected option
-    if (e.target.dataset.random_background === "true") {
+    if (this.#randomBackground === "true") {
       this.pickRandomImage();
     } else {
-      clearInterval(this.backgroundIntervalObj);
+      clearInterval(this.#backgroundIntervalObj);
     }
   }
   pickRandomImage() {
-    this.backgroundIntervalObj = setInterval(
+    this.#backgroundIntervalObj = setInterval(
       () => this.updateBackground(),
       10000
     );
