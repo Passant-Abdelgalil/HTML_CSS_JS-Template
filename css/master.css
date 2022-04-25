@@ -1,10 +1,12 @@
 :root {
   --main-color: #00abff;
 }
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: "Open Sans", sans-serif;
 }
-
 /* Start settings box */
 .settings {
   position: fixed;
@@ -38,6 +40,9 @@ body {
 }
 .settings .options-box {
   padding: 20px;
+  background-color: #eee;
+  text-align: center;
+  margin: 10px;
 }
 .settings .options-box h4 {
   font-size: 20px;
@@ -52,37 +57,73 @@ body {
   text-align: center;
 }
 .settings .options-box .colors-list li {
-  margin-left: 2px;
-  margin-right: 2px;
-  background-color: #00abff;
   opacity: 0.5;
-  width: 30px;
+  width: 33px;
   cursor: pointer;
-  height: 30px;
+  height: 33px;
   display: inline-block;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  border: 3px solid #eee;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
-.settings .options-box .colors-list li.active{
-    opacity: 1;
-} 
-.settings .options-box .colors-list li:first-child{
-    background-color: var(--main-color);
-} 
-.settings .options-box .colors-list li:nth-child(2){
-    background-color: #E91E63;
+.settings .options-box .colors-list li.active {
+  opacity: 1;
+  border: 3px solid white;
 }
-.settings .options-box .colors-list li:nth-child(3){
-    background-color: #009688;
+.settings .options-box .colors-list li:first-child {
+  background-color: #00abff;
 }
-.settings .options-box .colors-list li:nth-child(4){
-    background-color: #03A9F4;
+.settings .options-box .colors-list li:nth-child(2) {
+  background-color: #e91e63;
 }
-.settings .options-box .colors-list li:nth-child(5){
-    background-color: #4CAF50;
+.settings .options-box .colors-list li:nth-child(3) {
+  background-color: #009688;
+}
+.settings .options-box .colors-list li:nth-child(4) {
+  background-color: #ff9800;
+}
+.settings .options-box .colors-list li:nth-child(5) {
+  background-color: #4caf50;
+}
+
+.settings .background-options {
+  text-align: center;
+  padding: 10px;
+  background-color: #eee;
+  margin: 10px;
+}
+.settings .background-options h4 {
+  margin: 0;
+  margin-bottom: 15px;
+  font-weight: normal;
+  font-size: 18px;
+}
+.settings .background-options .options-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.settings .background-options .options-list li {
+  display: inline-block;
+  background-color: var(--main-color);
+  color: white;
+  width: 50px;
+  padding: 5px 10px;
+  opacity: 0.5;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.settings .background-options .options-list li.active {
+  opacity: 1;
 }
 /* End settings box */
 
@@ -156,6 +197,7 @@ body {
   color: white;
   top: 50%;
   left: 50%;
+  max-width: 700px;
   transform: translate(-50%, -50%);
   z-index: 2;
   text-align: center;
