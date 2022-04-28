@@ -1,3 +1,5 @@
+import { handleActiveElements } from "../helpers.js";
+
 export default class ColorManager {
   #mainColor;
 
@@ -11,8 +13,9 @@ export default class ColorManager {
 
     // if not previously stored, set a default value
     if (this.#mainColor == null) {
-      this.#mainColor =
-        document.documentElement.style.getPropertyValue("--main-color");
+      this.#mainColor = getComputedStyle(
+        document.documentElement
+      ).getPropertyValue("--main-color");
       window.localStorage.setItem("main-color", this.#mainColor);
     }
     // update main color
@@ -27,13 +30,7 @@ export default class ColorManager {
   }
 
   updateColor(e) {
-    // remove previously set active elements
-    e.target.parentElement
-      .querySelectorAll(".active")
-      .forEach((elem) => elem.classList.remove("active"));
-
-    // mark current li as active
-    e.target.classList.add("active");
+    handleActiveElements(e);
 
     // update main-color variable
     this.#mainColor = e.target.dataset.color;

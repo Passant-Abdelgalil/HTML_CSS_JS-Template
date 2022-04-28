@@ -29,6 +29,7 @@ body {
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
+  border: 1px solid #eee;
 }
 .settings.open {
   left: 0;
@@ -109,13 +110,37 @@ body {
   font-weight: normal;
   font-size: 18px;
 }
-.settings .background-options .options-list {
+.settings .bullets-options {
+  text-align: center;
+  padding: 10px;
+  background-color: #eee;
+  margin: 10px;
+}
+.settings .bullets-options h4 {
+  margin: 0;
+  margin-bottom: 15px;
+  font-weight: normal;
+  font-size: 18px;
+}
+.settings .options-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+.settings .reset-options {
+  background-color: #f44336;
+  color: white;
+  width: 178px;
+  border: none;
+  margin: 10px auto;
+  display: block;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-.settings .background-options .options-list li {
+.settings .options-list li {
   display: inline-block;
   background-color: var(--main-color);
   color: white;
@@ -130,10 +155,57 @@ body {
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
 }
-.settings .background-options .options-list li.active {
+.settings .options-list li.active {
   opacity: 1;
 }
 /* End settings box */
+
+/* Start nav bullets */
+.nav-bullets {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  z-index: 5;
+}
+.nav-bullets .bullet {
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--main-color);
+  border-radius: 50%;
+  margin: 20px auto;
+  cursor: pointer;
+  position: relative;
+}
+.nav-bullets .bullet:hover .tooltip {
+  display: block;
+}
+.nav-bullets .bullet .tooltip {
+  background-color: var(--main-color);
+  width: 120px;
+  color: white;
+  padding: 8px 10px;
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  text-align: center;
+  cursor: default;
+  pointer-events: none;
+  display: none;
+}
+.nav-bullets .bullet .tooltip::before {
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  border: 10px solid;
+  right: -20px;
+  border-color: transparent transparent transparent var(--main-color);
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* End nav bullets */
 
 /* Start landing page */
 .landing-page {
@@ -487,15 +559,230 @@ body {
   position: absolute;
   top: 20px;
 }
-.timeline .timeline-content .left .content::before{
+.timeline .timeline-content .left .content::before {
   right: -20px;
   border-color: transparent transparent transparent white;
-  
 }
-.timeline .timeline-content .right .content::before{
+.timeline .timeline-content .right .content::before {
   left: -20px;
-  border-color: transparent white transparent  transparent ;
-
+  border-color: transparent white transparent transparent;
 }
 
 /* End Timeline  */
+
+/* Start Features */
+.features {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.features h2 {
+  font-weight: bold;
+  color: var(--main-color);
+  font-size: 30px;
+  margin: 0 0 60px;
+  text-align: center;
+}
+.features .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.features .feat-box {
+  flex-basis: 30%;
+  margin: 0 10px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.features .feat-box img {
+  width: 128px;
+}
+.features .feat-box h4 {
+  font-size: 20px;
+  margin: 15px 0 40px;
+  position: relative;
+}
+.features .feat-box h4::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  left: 50%;
+  margin-left: -20px;
+  bottom: -20px;
+  background-color: var(--main-color);
+}
+.features .feat-box p {
+  width: 90%;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: #706f6f;
+}
+/* End Features */
+
+/* Start Testimonials */
+.testimonials {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  min-height: 600px;
+  position: relative;
+}
+.testimonials::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #333;
+}
+.testimonials::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--main-color);
+}
+.testimonials h2 {
+  font-weight: bold;
+  color: white;
+  font-size: 30px;
+  margin: 0 0 60px;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+.testimonials .ts-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.testimonials .ts-box {
+  position: relative;
+  z-index: 2;
+  flex-basis: 30%;
+  background-color: white;
+  padding: 20px;
+}
+.testimonials .ts-box:not(:last-of-type) {
+  margin-right: 1%;
+}
+.testimonials .ts-box > p {
+  margin: 0 0 20px;
+  line-height: 1.5;
+  font-size: 18px;
+  color: #707070;
+  font-style: italic;
+}
+.testimonials .ts-box .person-info {
+  display: flex;
+  align-items: center;
+}
+.testimonials .ts-box .person-info img {
+  border-radius: 50%;
+  max-height: 80px;
+  margin-right: 15px;
+}
+.testimonials .ts-box .person-info h4 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.testimonials .ts-box .person-info p {
+  color: #777;
+  margin: 0;
+}
+
+/* End Testimonials */
+
+/* Start Contact us*/
+.contact {
+  min-height: 600px;
+  background-image: url("../imgs/dotted-map.png");
+  background-size: cover;
+  background-position: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  position: relative;
+}
+.contact .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.contact .container {
+  position: relative;
+  z-index: 2;
+}
+.contact h2 {
+  color: var(--main-color);
+  margin: 0 0 60px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.contact form {
+  display: flex;
+  max-width: 800px;
+  justify-content: space-between;
+  margin: auto;
+}
+.contact form .left {
+  flex-basis: 48%;
+}
+.contact form .right {
+  flex-basis: 49%;
+}
+.contact form input:not([type="submit"]),
+.contact form textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  background-color: rgba(218, 218, 218, 0.19);
+}
+.contact form input:not([type="submit"])::placeholder,
+.contact form textarea::placeholder {
+  opacity: 0.5;
+}
+.contact form input:not([type="submit"]):-moz-placeholder,
+.contact form textarea:-moz-placeholder {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+}
+.contact form input:not([type="submit"]):focus,
+.contact form textarea:focus {
+  outline: 1px solid var(--main-color);
+}
+.contact form input {
+  height: 40px;
+}
+.contact form textarea {
+  height: 150px;
+}
+.contact form input[type="submit"] {
+  padding: 10px;
+  width: 100%;
+  border-color: transparent;
+  background-color: var(--main-color);
+  color: white;
+  cursor: pointer;
+}
+.contact form textarea:focus::-webkit-input-placeholder,
+.contact form input:not([type="submit"]):focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+.contact form textarea:focus:-moz-placeholder,
+.contact form input:not([type="submit"]):focus:-moz-placeholder {
+  opacity: 0;
+}
+.contact form textarea:focus::placeholder,
+.contact form input:not([type="submit"]):focus::placeholder {
+  opacity: 0;
+}
+/* End Contact us*/

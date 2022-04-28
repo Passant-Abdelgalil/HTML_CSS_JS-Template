@@ -3,9 +3,11 @@ let backgroundInterval;
 
 import ColorManager from "./settings/main-color.js";
 import BackgroundManager from "./settings/background.js";
+import BulletsManager from "./settings/bullets.js";
 
 let colorManager = new ColorManager();
 let backgroundManager = new BackgroundManager();
+let bulletsManager = new BulletsManager();
 
 // toggle settings
 let settingsIcon = document.querySelector(".settings__icon");
@@ -98,10 +100,34 @@ ourGallery.forEach((img) => {
 });
 // close popup
 document.addEventListener("click", (e) => {
-  console.log(e.target.parentNode);
   // remove the current popup
   if (e.target.className == "close-button") {
     e.target.parentNode.remove();
     document.querySelector(".popup-overlay").remove();
   }
 });
+
+// Select all bullets
+const allBullets = document.querySelectorAll(".nav-bullets .bullet");
+const allLinks = document.querySelectorAll(".header-area__links a");
+
+function scrollToSection(elemets) {
+  elemets.forEach((element) => {
+    element.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.querySelector(`.${e.target.dataset.section}`).scrollIntoView({
+        behavior: "smooth",
+      });
+    });
+  });
+}
+scrollToSection(allLinks);
+scrollToSection(allBullets);
+
+// reset button
+document.querySelector(".reset-options").onclick = () => {
+  localStorage.removeItem("display-bullets");
+  localStorage.removeItem("main-color");
+  localStorage.removeItem("random-background");
+  window.location.reload();
+};
